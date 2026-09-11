@@ -9,7 +9,9 @@ const app = express();
 
 app.use(express.static(join(__dirname, "public")));
 app.use("/uv/", express.static(uvPath));
+
 app.get("/sw.js", (req, res) => {
+    res.setHeader("Content-Type", "application/javascript");
     res.sendFile(join(uvPath, "uv.sw.js"));
 });
 
