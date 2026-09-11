@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<script>
-    self.__uv$config = {
-        prefix: '/service/',
-        bare: '/bare/',
-        encodeUrl: Ultraviolet.codec.xor.encode,
-        decodeUrl: Ultraviolet.codec.xor.decode,
-        handler: '/uv/uv.handler.js',
-        bundle: '/uv/uv.bundle.js',
-        config: '/uv/uv.config.js',
-        sw: '/uv/uv.sw.js'
-    };
-</script>
-<script src="/uv/uv.bundle.js"></script>
-<script src="/uv/uv.config.js"></script>   
 <head>
-    <title>Isreal</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Tab</title>
+    <title>Isreal</title>
+
+    <script>
+        self.__uv$config = {
+            prefix: '/service/',
+            bare: '/bare/',
+            encodeUrl: Ultraviolet.codec.xor.encode,
+            decodeUrl: Ultraviolet.codec.xor.decode,
+            handler: '/uv/uv.handler.js',
+            bundle: '/uv/uv.bundle.js',
+            config: '/uv/uv.config.js',
+            sw: '/uv/uv.sw.js'
+        };
+    </script>
+    <script src="/uv/uv.bundle.js"></script>
+    <script src="/uv/uv.config.js"></script>
+
     <style>
-        /* CSS Variables for easy customization */
         :root {
-            --bg-color: #202124; /* Dark mode default */
+            --bg-color: #202124;
             --text-color: #e8eaed;
             --input-bg: #303134;
             --input-border: #5f6368;
@@ -36,7 +36,6 @@
             padding: 0;
             font-family: Arial, sans-serif;
             background-color: var(--bg-color);
-            /* Custom Background Image */
             background-image: url('https://images.unsplash.com/photo-1477346611705-65d1883cee1e?q=80&w=2070&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
@@ -48,7 +47,6 @@
             overflow: hidden;
         }
 
-        /* Overlay to ensure text readability over background */
         body::before {
             content: '';
             position: absolute;
@@ -56,11 +54,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4); /* Dark overlay */
+            background: rgba(0, 0, 0, 0.4);
             z-index: -1;
         }
 
-        /* Navigation Bar */
         nav {
             display: flex;
             justify-content: flex-end;
@@ -92,14 +89,13 @@
             color: #202124;
         }
 
-        /* Main Content */
         main {
             flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin-top: -50px; /* Visual adjustment */
+            margin-top: -50px;
         }
 
         .logo {
@@ -107,7 +103,7 @@
             font-weight: bold;
             margin-bottom: 30px;
             letter-spacing: -2px;
-            color: white; /* Google colors usually, but white looks good on dark BG */
+            color: white;
         }
 
         .search-container {
@@ -129,7 +125,204 @@
             transition: background-color 0.2s;
         }
 
-.search-bar:focus {
-    background-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 1px 6px rgba(0,0,0,0.3);
-}   
+        .search-bar:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 1px 6px rgba(0,0,0,0.3);
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .shortcuts {
+            display: flex;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .shortcut-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .shortcut-icon {
+            width: 48px;
+            height: 48px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+            transition: background-color 0.2s;
+        }
+
+        .shortcut-icon:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        footer {
+            padding: 15px;
+            background-color: rgba(32, 33, 36, 0.9);
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #9aa0a6;
+        }
+
+        footer a {
+            color: #9aa0a6;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#">Gmail</a>
+        <a href="#">Images</a>
+        <div class="avatar">U</div>
+    </nav>
+
+    <main>
+        <div class="logo">Isreal</div>
+
+        <div class="search-container">
+            <input type="text" class="search-bar" placeholder="Search or type a URL" id="searchInput">
+            <button class="search-btn" id="searchBtn">
+                <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24px" height="24px">
+                    <path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+            </button>
+        </div>
+
+        <div class="shortcuts" id="shortcuts"></div>
+    </main>
+
+    <footer>
+        <span>Isreal Proxy</span>
+        <span><a href="#">Privacy</a><a href="#">Terms</a></span>
+    </footer>
+
+    <iframe id="uv-frame" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; border:none; z-index:9999;"></iframe>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+        const uvFrame = document.getElementById('uv-frame');
+
+        function isURL(str) {
+            return /^(https?:\/\/)?([\w-]+\.)+[a-z]{2,}(\/\S*)?$/i.test(str) ||
+                   /^https?:\/\//i.test(str);
+        }
+
+        function performSearch() {
+            const query = searchInput.value.trim();
+            if (!query) return;
+
+            let url;
+            if (isURL(query)) {
+                url = query.startsWith('http') ? query : 'https://' + query;
+            } else {
+                url = 'https://www.google.com/search?q=' + encodeURIComponent(query);
+            }
+
+            uvFrame.style.display = 'block';
+            uvFrame.src = __uv$config.prefix + __uv$config.encodeUrl(url);
+        }
+
+        searchBtn.addEventListener('click', performSearch);
+        searchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') performSearch();
+        });
+        searchInput.focus();
+
+        // Shortcuts
+        const SHORTCUTS_KEY = 'newtab_shortcuts';
+        const shortcutsContainer = document.getElementById('shortcuts');
+
+        function getShortcuts() {
+            return JSON.parse(localStorage.getItem(SHORTCUTS_KEY) || '[]');
+        }
+
+        function saveShortcuts(s) {
+            localStorage.setItem(SHORTCUTS_KEY, JSON.stringify(s));
+        }
+
+        function renderShortcuts() {
+            const shortcuts = getShortcuts();
+            shortcutsContainer.innerHTML = '';
+
+            shortcuts.forEach((item, index) => {
+                const el = document.createElement('a');
+                el.href = '#';
+                el.className = 'shortcut-item';
+                el.innerHTML = `<div class="shortcut-icon" style="background-color:${item.color}">${item.letter}</div><span>${item.name}</span>`;
+                el.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    uvFrame.style.display = 'block';
+                    uvFrame.src = __uv$config.prefix + __uv$config.encodeUrl(item.url);
+                });
+                el.addEventListener('dblclick', (e) => {
+                    e.preventDefault();
+                    const s = getShortcuts();
+                    s.splice(index, 1);
+                    saveShortcuts(s);
+                    renderShortcuts();
+                });
+                shortcutsContainer.appendChild(el);
+            });
+
+            const addBtn = document.createElement('a');
+            addBtn.href = '#';
+            addBtn.className = 'shortcut-item';
+            addBtn.innerHTML = `<div class="shortcut-icon" style="font-size:24px;">+</div><span>Add</span>`;
+            addBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const name = prompt('Name:');
+                if (!name) return;
+                const url = prompt('URL:');
+                if (!url) return;
+                const s = getShortcuts();
+                const colors = ['#f44336','#9c27b0','#3f51b5','#03a9f4','#4caf50','#ff9800'];
+                s.push({ name, url: url.startsWith('http') ? url : 'https://' + url, letter: name[0].toUpperCase(), color: colors[s.length % colors.length] });
+                saveShortcuts(s);
+                renderShortcuts();
+            });
+            shortcutsContainer.appendChild(addBtn);
+        }
+
+        renderShortcuts();
+
+        // Background
+        const savedBg = localStorage.getItem('newtab_bg');
+        if (savedBg) document.body.style.backgroundImage = `url('${savedBg}')`;
+    </script>
+
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker.register("/uv/uv.sw.js");
+            });
+        }
+    </script>
+</body>
+</html>   
