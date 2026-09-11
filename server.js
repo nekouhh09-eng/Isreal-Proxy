@@ -2,17 +2,14 @@ const { createBareServer } = require("@tomphttp/bare-server-node");
 const express = require("express");
 const { createServer } = require("node:http");
 const { publicPath } = require("ultraviolet-static");
-const { uvPath } = require("@titaniumnetwork-dev/ultraviolet");
 const { join } = require("node:path");
 
 const bare = createBareServer("/bare/");
 const app = express();
 
-// Serve your new tab page as the index
 app.use(express.static(__dirname + "/public"));
 
-// Serve UV static files
-app.use("/uv/", express.static(uvPath));
+app.use("/uv/", express.static(publicPath));
 
 const server = createServer();
 
@@ -32,7 +29,7 @@ server.on("upgrade", (req, socket, head) => {
     }
 });
 
-const port = process.env.PORT || 8080;   
+const port = process.env.PORT || 8080;
 server.listen({ port }, () => {
     console.log(`Running on http://localhost:${port}`);
 });   
