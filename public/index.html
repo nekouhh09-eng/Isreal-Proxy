@@ -245,8 +245,15 @@
                 url = 'https://www.google.com/search?q=' + encodeURIComponent(query);
             }
 
-            uvFrame.style.display = 'block';
-            uvFrame.src = __uv$config.prefix + __uv$config.encodeUrl(url);
+            console.log('Searching:', url);
+            console.log('Ultraviolet loaded?', typeof Ultraviolet !== 'undefined');
+
+            if (typeof Ultraviolet !== 'undefined' && typeof __uv$config?.encodeUrl === 'function') {
+                uvFrame.style.display = 'block';
+                uvFrame.src = __uv$config.prefix + __uv$config.encodeUrl(url);
+            } else {
+                window.location.href = url;
+            }
         }
 
         searchBtn.addEventListener('click', performSearch);
@@ -277,8 +284,12 @@
                 el.innerHTML = `<div class="shortcut-icon" style="background-color:${item.color}">${item.letter}</div><span>${item.name}</span>`;
                 el.addEventListener('click', (e) => {
                     e.preventDefault();
-                    uvFrame.style.display = 'block';
-                    uvFrame.src = __uv$config.prefix + __uv$config.encodeUrl(item.url);
+                    if (typeof Ultraviolet !== 'undefined' && typeof __uv$config?.encodeUrl === 'function') {
+                        uvFrame.style.display = 'block';
+                        uvFrame.src = __uv$config.prefix + __uv$config.encodeUrl(item.url);
+                    } else {
+                        window.location.href = item.url;
+                    }
                 });
                 el.addEventListener('dblclick', (e) => {
                     e.preventDefault();
