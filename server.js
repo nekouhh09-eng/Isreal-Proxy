@@ -1,15 +1,13 @@
 const { createBareServer } = require("@tomphttp/bare-server-node");
 const express = require("express");
 const { createServer } = require("node:http");
-const { publicPath } = require("ultraviolet-static");
 const { join } = require("node:path");
 
 const bare = createBareServer("/bare/");
 const app = express();
 
-app.use(express.static(__dirname + "/public"));
-
-app.use("/uv/", express.static(publicPath));
+app.use(express.static(join(__dirname, "public")));
+app.use("/uv/", express.static(join(__dirname, "node_modules", "ultraviolet-static", "uv")));
 
 const server = createServer();
 
@@ -31,5 +29,5 @@ server.on("upgrade", (req, socket, head) => {
 
 const port = process.env.PORT || 8080;
 server.listen({ port }, () => {
-    console.log(`Running on http://localhost:${port}`);
+    console.log(`Running on port ${port}`);
 });   
