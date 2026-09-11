@@ -11,6 +11,9 @@ const app = express();
 app.use(express.static(join(__dirname, "public")));
 app.use("/uv/", express.static(uvPath));
 
+app.get("/sw.js", (req, res) => {
+    res.sendFile(join(uvPath, "uv.sw.js"));
+});   
 const server = createServer();
 
 server.on("request", (req, res) => {
