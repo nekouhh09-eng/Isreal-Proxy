@@ -1,7 +1,6 @@
 const { createBareServer } = require("@tomphttp/bare-server-node");
 const express = require("express");
 const { createServer } = require("node:http");
-const { publicPath } = require("ultraviolet-static");
 const { uvPath } = require("@titaniumnetwork-dev/ultraviolet");
 const { join } = require("node:path");
 
@@ -10,10 +9,10 @@ const app = express();
 
 app.use(express.static(join(__dirname, "public")));
 app.use("/uv/", express.static(uvPath));
-
 app.get("/sw.js", (req, res) => {
     res.sendFile(join(uvPath, "uv.sw.js"));
-});   
+});
+
 const server = createServer();
 
 server.on("request", (req, res) => {
@@ -35,5 +34,4 @@ server.on("upgrade", (req, socket, head) => {
 const port = process.env.PORT || 8080;
 server.listen({ port }, () => {
     console.log(`Running on port ${port}`);
-    console.log(`UV path: ${uvPath}`);
 });   
