@@ -326,12 +326,14 @@
         if (savedBg) document.body.style.backgroundImage = `url('${savedBg}')`;
     </script>
 
-    <script>
-        if ("serviceWorker" in navigator) {
-            window.addEventListener("load", () => {
-                navigator.serviceWorker.register("/uv/uv.sw.js");
-            });
-        }
-    </script>
+<script>
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+            navigator.serviceWorker.register("/sw.js", { scope: "/" })
+                .then(reg => console.log("SW registered, scope:", reg.scope))
+                .catch(err => console.error("SW failed:", err));
+        });
+    }
+</script>   
 </body>
 </html>   
