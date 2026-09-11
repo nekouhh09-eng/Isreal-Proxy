@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Isreal</title>
 
+    <script src="/uv/uv.bundle.js"></script>
+    <script src="/uv/uv.config.js"></script>
     <script>
         self.__uv$config = {
             prefix: '/service/',
@@ -17,8 +19,6 @@
             sw: '/uv/uv.sw.js'
         };
     </script>
-    <script src="/uv/uv.bundle.js"></script>
-    <script src="/uv/uv.config.js"></script>
 
     <style>
         :root {
@@ -255,7 +255,6 @@
         });
         searchInput.focus();
 
-        // Shortcuts
         const SHORTCUTS_KEY = 'newtab_shortcuts';
         const shortcutsContainer = document.getElementById('shortcuts');
 
@@ -312,7 +311,6 @@
 
         renderShortcuts();
 
-        // Background
         const savedBg = localStorage.getItem('newtab_bg');
         if (savedBg) document.body.style.backgroundImage = `url('${savedBg}')`;
     </script>
